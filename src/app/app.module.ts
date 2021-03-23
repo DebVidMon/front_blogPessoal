@@ -8,17 +8,24 @@ import { RodapeComponent } from './rodape/rodape.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 
+import{ HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
+import { InicioComponent } from './inicio/inicio.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     RodapeComponent,
     EntrarComponent,
-    CadastroComponent
+    CadastroComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
