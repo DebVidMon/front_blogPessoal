@@ -1,1 +1,74 @@
-<p>inicio works!</p>
+<div class="container-fluid">
+    <div class="row bg-secondary d-flex align-items-center">
+        <div class="col-md-6">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 text-white">
+                    <h1 class="fs-60">Seja Bem-vinde!</h1>
+                    <h5 class="fs-20">Expresse aqui os seus pensamentos e opiniões</h5>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-5 mb-5">
+                <div class="col-md-6">
+                    <button class="btn btn-light mr-3" data-toggle="modal" data-target="#newPost">Nova Postagem</button>
+                    <a class="btn btn-outline-light" href="#postagens">Ver Postagens</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <a href="https://storyset.com/people" target="_blank">
+                <img id="inicio" src="../../assets/minapaisagem.png" alt="desenho de moça negra em frente a uma paisagem com laptop no colo"></a>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 mb-5" id="postagens">
+    <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active text-secundary" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true"><b>Todas as Postagens</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secundary" id="mine-tab" data-toggle="tab" href="#mine" role="tab" aria-controls="mine" aria-selected="false"><b>Minhas Postagens</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secundary" id="byTema-tab" data-toggle="tab" href="#byTema" role="tab" aria-controls="byTema" aria-selected="false"><b>Postagens por Tema</b></a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">1</div>
+        <div class="tab-pane fade" id="mine" role="tabpanel" aria-labelledby="mine-tab">2</div>
+        <div class="tab-pane fade" id="byTema" role="tabpanel" aria-labelledby="byTema-tab">3</div>
+      </div>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="newPost" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="TituloModalCentralizado">Nova Postagem</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+              <label for="titulo">Título:</label>
+              <input type="text" id="titulo" class="form-control" placeholder="Digite o Título">
+          </div>
+          <div class="form-group">
+            <label for="texto">Texto:</label>
+            <textarea class="form-control" name="texto" id="texto" rows="5" placeholder="Máximo de 100 caracteres"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="tema">Escolha um Tema ou <a href="">cadastre um novo</a>:</label>
+            <select class="form-control" name="tema" id="tema">
+                <option value="">--Temas--</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
