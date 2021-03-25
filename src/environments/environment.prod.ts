@@ -3,5 +3,7 @@ export const environment = {
   token:"",
   nome:"",
   id:0,
-  foto:""
+  foto:"",
+  server: "http://localhost",
+  porta: ":8080"
 };
