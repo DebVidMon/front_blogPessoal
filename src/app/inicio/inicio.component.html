@@ -26,7 +26,7 @@
 
           <a class="nav-item nav-link active text-secundary" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="nav-all" aria-selected="true"><b>Todas as Postagens</b></a>
 
-          <a class="nav-item nav-link text-secundary" id="mine-tab" data-toggle="tab" href="#mine" role="tab" aria-controls="nav-mine" aria-selected="false"><b>Minhas Postagens</b></a><!--(click)="findUserById()" -->
+          <a class="nav-item nav-link text-secundary" id="mine-tab" data-toggle="tab" href="#mine" role="tab" aria-controls="nav-mine" aria-selected="false" (click)="findUserById()"><b>Minhas Postagens</b></a>
 
           <a class="nav-item nav-link text-secundary" id="byTema-tab" data-toggle="tab" href="#byTema" role="tab" aria-controls="nav-byTema" aria-selected="false"><b>Postagens por Tema</b></a>
       </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="tab-pane fade" id="mine" role="tabpanel" aria-labelledby="mine-tab">
           <div class="card-columns">
-            <div class="card text-center" *ngFor="let item2 of listaPosts"> <!--| orderBy : key : reverse-->
+            <div class="card text-center" *ngFor="let item2 of usuario.postagem"> <!--| orderBy : key : reverse-->
               <div class="card-body">
                 <h5 class= "card-title m-0">{{item2.titulo}}</h5>
                 <small class="text-muted"> {{item2.tema.descricao}} </small>

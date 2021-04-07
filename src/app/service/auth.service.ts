@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
@@ -10,7 +11,11 @@ import { Usuario } from '../model/Usuario';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  token = {
+    headers: new HttpHeaders().set("Authorization", environment.token)
+  }
+
+  constructor(private http: HttpClient,private router: Router) { }
 
   entrar(userLogin: UserLogin): Observable<UserLogin>{
     return this.http.post<UserLogin>('http://localhost:8080/usuario/login', userLogin)
@@ -21,7 +26,7 @@ export class AuthService {
   }
 
   getUserById(id:number): Observable<Usuario>{
-    return this.http.get<Usuario>(`http://localhost:8080/usuario/${id}`)
+    return this.http.get<Usuario>(`http://localhost:8080/usuario/${id}`, this.token)
   }
 
   logado(){

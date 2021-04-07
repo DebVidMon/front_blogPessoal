@@ -26,11 +26,10 @@ export class PostagemEditComponent implements OnInit {
     if( environment.token == "") {
       alert("Sua sessão expirou. Entre novamente.")
       this.router.navigate(["/entrar"])
-
+    }
       let id= this.aRoute.snapshot.params['id']
       this.findPostById(id)
       this.findAllTemas()
-    }
   }
 
 
