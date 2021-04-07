@@ -1,3 +1,4 @@
+import { AlertasService } from './../service/alertas.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../model/Usuario';
@@ -14,7 +15,7 @@ export class CadastroComponent implements OnInit {
   senha1: string
   tipoUser: string
 
-  constructor( private aService: AuthService, private router:Router) { }
+  constructor( private aService: AuthService, private router: Router, private alerta: AlertasService) { }
 
   ngOnInit() {
     window.scroll(0,0)
@@ -37,7 +38,7 @@ export class CadastroComponent implements OnInit {
       this.aService.cadastrar(this.usuario).subscribe((resp: Usuario)=>{
          this.usuario=resp
          this.router.navigate(["/entrar"])
-         alert("Usuário cadastrado com sucesso")
+         this.alerta.showAlertSuccess("Usuário cadastrado com sucesso")
       })
     }
   }
