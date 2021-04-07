@@ -1,3 +1,4 @@
+import { AlertasService } from './../../service/alertas.service';
 import { TemaService } from './../../service/tema.service';
 import { Tema } from './../../model/Tema';
 
@@ -19,12 +20,12 @@ export class PostagemEditComponent implements OnInit {
   listaTemas: Tema[]
   idTema: number
 
-  constructor(private postService: PostagemService, private router: Router, private aRoute: ActivatedRoute,private temaService: TemaService) { }
+  constructor(private postService: PostagemService, private router: Router, private aRoute: ActivatedRoute,private temaService: TemaService, private alerta: AlertasService) { }
 
   ngOnInit() {
     window.scroll(0,0)
     if( environment.token == "") {
-      alert("Sua sessão expirou. Entre novamente.")
+      this.alerta.showAlertDanger("Sua sessão expirou. Entre novamente.")
       this.router.navigate(["/entrar"])
     }
       let id= this.aRoute.snapshot.params['id']
@@ -57,7 +58,7 @@ export class PostagemEditComponent implements OnInit {
 
     this.postService.putPostagem(this.postagem).subscribe((resp:Postagem)=>{
       this.postagem = resp
-      alert("Postagem atualizada com sucesso!")
+      this.alerta.showAlertSuccess("Postagem atualizada com sucesso!")
       this.router.navigate(["/inicio"])
     })
   }

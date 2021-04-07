@@ -1,3 +1,4 @@
+import { AlertasService } from './../../service/alertas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TemaService } from './../../service/tema.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,11 +14,12 @@ export class TemaEditComponent implements OnInit {
 
   tema: Tema = new Tema()
 
-  constructor(private temaService: TemaService, private router: Router, private aRoute: ActivatedRoute) { }
+  constructor(private temaService: TemaService, private router: Router, private aRoute: ActivatedRoute,
+    private alerta: AlertasService) { }
 
   ngOnInit() {
     if( environment.token == "") {
-      alert("Sua sessão expirou. Entre novamente.")
+      this.alerta.showAlertDanger("Sua sessão expirou. Entre novamente.")
       this.router.navigate(["/entrar"])
     }
 
@@ -34,7 +36,7 @@ export class TemaEditComponent implements OnInit {
   editar(){
     this.temaService.editTema(this.tema).subscribe((resp: Tema)=>{
       this.tema = resp
-      alert("Tema editado com sucesso!")
+      this.alerta.showAlertSuccess("Tema editado com sucesso!")
       this.router.navigate(["/tema"])
     })
   }
