@@ -1,3 +1,5 @@
+import { ComentarioService } from './../service/comentario.service';
+import { Comentario } from './../model/Comentario';
 import { AlertasService } from './../service/alertas.service';
 import { AuthService } from './../service/auth.service';
 import { Usuario } from './../model/Usuario';
@@ -25,6 +27,10 @@ export class InicioComponent implements OnInit {
   nomeTema: string
   usuario: Usuario = new Usuario()
   idUser = environment.id
+  fotoUser = environment.foto
+
+  comentario: Comentario = new Comentario()
+  listaComentarios: Comentario[]
 
   key='data'
   reverse =true
@@ -34,7 +40,8 @@ export class InicioComponent implements OnInit {
     private postagemService: PostagemService,
     private temaService: TemaService,
     private authService: AuthService,
-    private alerta: AlertasService) { }
+    private alerta: AlertasService,
+    private comentarioService: ComentarioService) { }
 
   ngOnInit() {
     window.scroll(0,0)
@@ -107,5 +114,29 @@ export class InicioComponent implements OnInit {
         this.listaTemas = resp
       })
     }
+  }
+
+  comentar(id: number){
+
+    this.usuario.id = this.idUser;
+    this.comentario.usuario = this.usuario;
+
+    this.postagem.id = id;
+    this.comentario.postagem = this.postagem;
+
+    this.comentarioService.postComent(this.comentario).subscribe((resp: Comentario) => {
+      this.comentario = resp
+      this.alerta.showAlertSuccess('Comentário inserido com sucesso!');
+      this.comentario = new Comentario();
+      this.getAllPostagens();
+    }, err => {
+      console.log(this.comentario)
+    })
+  }
+
+  findallComentarios(){
+    this.comentarioService.getAllComents().subscribe((resp: Comentario[])=>{
+      this.listaComentarios = resp
+    })
   }
 }

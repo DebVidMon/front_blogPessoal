@@ -49,9 +49,9 @@ export class UsuarioEditComponent implements OnInit {
     if (this.user.senha != this.confirmarSenha) {
       this.alerta.showAlertDanger('A senhas estão incorretas.')
     } else {
+      console.log(this.user.id, this.user.nome, this.user.usuario, this.user.senha, this.user.foto, this.user.tipoUsuario)
       this.authService.cadastrar(this.user).subscribe((resp: Usuario) => {
         this.user = resp
-        this.router.navigate(['/inicio'])
         this.alerta.showAlertSuccess('Usuário atualizado com sucesso, faça o login novamente.')
         environment.token = ''
         environment.nome = ''
@@ -59,7 +59,9 @@ export class UsuarioEditComponent implements OnInit {
         environment.id = 0
 
         this.router.navigate(['/entrar'])
-      })
+      }, erro => {
+        this.alerta.showAlertDanger('Algo deu errado, tente novamente mais tarde')
+     })
     }
   }
 
